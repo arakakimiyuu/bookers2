@@ -15,10 +15,14 @@
     　<tbody>
         <% @books.each do |book| %>
         <tr>
-          <%= image_tag post_image.get_image %>
-          <%= image_tag 'sample-author1.jpg' %>
-          <%= book.title %>
-          <%= book.body %>
+          <td>
+            <%= link_to book_path(book.id) do %>
+             <%= image_tag book.get_image %>
+            <% end %>
+          </td>
+          <td><%= image_tag book.user.get_profile_image %></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
         </tr>
         <% end %>
     　</tbody>

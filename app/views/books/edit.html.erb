@@ -1,0 +1,17 @@
+<div class="container">
+  <div claas="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model: book do |f| %>
+        <p>Title</p>
+         <%= f.text_field :title %>
+        <p>Opinion</p>
+         <%= f.text_area :body %>
+        <%= f.submit 'Creat Book', class: "btn btn-success" %>
+      <% end %>
+      <%= link_to "Show" book_path %>
+       |
+      <%= link_to "Back" books_path %>
+    </div>
+  </div>
+</div>
