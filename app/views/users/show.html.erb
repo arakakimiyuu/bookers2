@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <%= render 'list', book: @book, user: @user %>
+    <div>
+      <% flash[:notice] %>
+    </div>
+    <%= render 'books/list', book: @book, user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
@@ -17,11 +20,10 @@
         <tr>
           <td>
             <%= link_to book_path(book.id) do %>
-             <%= image_tag book.get_image %>
+             <%= image_tag book.user.get_profile_image %>
             <% end %>
           </td>
-          <td><%= image_tag book.user.get_profile_image %></td>
-          <td><%= link_to book.title book_path(book.id) %></td>
+          <td><%= link_to book.title, book_path(book.id) %></td>
           <td><%= book.body %></td>
         </tr>
         <% end %>

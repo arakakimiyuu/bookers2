@@ -1,5 +1,11 @@
     <div class="col-md-3">
+      <div>
+        <%= flash[:notice] %>
+      </div>
       <h2>User info</h2>
+      <div>
+        <%= image_tag current_user.get_profile_image %>
+      </div>
       <table class="table">
         <tbody>
           <tr>
@@ -13,12 +19,12 @@
         </tbody>
       </table>
       <div class="row">
-         <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+         <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
          <i class="fas fa-user-cog"></i>
          <% end %>
       </div>
       <h2 class="mt-3">New Book</h2>
-       <%= form_with model: book do |f| %>
+       <%= form_with model: book, url: books_path, method: :post do |f| %>
         <p>Title</p>
          <%= f.text_field :title %>
         <p>Opinion</p>

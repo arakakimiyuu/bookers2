@@ -1,19 +1,24 @@
 <div class="container px-5 px-sm-0">
  <div class="row">
+  <div>
+    <% flash[:notice] %>
+  </div>
   <%= render 'list', book: @book, user: @user %>
    <div class="col-md-8 offset-md-1">
+    <div>
+      <%= flash[:notice] %>
+    </div>
     <h2>Book detail</h2>
     <table class="table">
        <tbody>
          <tr>
           <td><%= image_tag book.user.get_profile_image %></td>
-          <td><%= image_tag 'sample-author1.jpg' %></td>
           <td><%= book.title %></td>
           <td><%= book.body %></td>
           <td><%= link_to "Edit" edit_book_path(book.id), class: "btn btn-sm btn-success" %></td>
           <td>
            <% if @book.user == current_user %>
-            <%= link_to "Destroy" books_path, method: :delete, class: "btn btn-sm btn-danger" %>
+            <%= link_to "Destroy" books_path, method: :delete, "data-confim" => "本当に消しますか？" class: "btn btn-sm btn-danger" %>
            <% end %>
            </td>
          </tr>
