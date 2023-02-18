@@ -4,7 +4,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-     redirect_to books_path(@book)
+     redirect_to books_path
      flash[:notice]="You have created book successfully."
     else
       @books = Book.all
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-
+    @newbook = Book.new
   end
 
 

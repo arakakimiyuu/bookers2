@@ -29,7 +29,7 @@
             <%= link_to book_path(book.id) do %>
              <%= image_tag book.user.get_profile_image %>
             <% end %>
-            <p><%= link_to user_path(@user), book.user.name %></p>
+            <p><%= link_to  book.user.name, user_path(@user) %></p>
           </td>
           <td><%= book.title %></td>
           <td><%= book.body %></td>

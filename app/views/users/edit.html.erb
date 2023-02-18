@@ -13,13 +13,21 @@
       <% end %>
 
       <%= form_with model: @user do |f| %>
-        <label for="inputName">Name</label>
-        <%= f.text_field :name, autofocus: true, id:"input", placeholder:"名前" %>
-        <label for="inputImage">Image</label>
-        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        <label for="inputIntroduction">Introduction</label>
-        <%= f.text_area :introduction, autofocus: true, id:"input", placeholder:"自己紹介文" %>
-        <%= f.submit 'Update User', class:"btn btn-secondary" %>
+        <div class="form-group">
+          <label for="inputName">Name</label>
+          <%= f.text_field :name, class: "form-control user_name", id:"input" %>
+        </div>
+        <div class="form-group">
+          <label for="inputImage">Image</label>
+          <%= f.file_field :profile_image, class: "form-control-file user_image", accept: "image/*" %>
+        </div>
+        <div class="form-group">
+          <label for="inputIntroduction">Introduction</label>
+          <%= f.text_area :introduction, class: "form-control user_introduction", id:"input" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Update User', class:"btn btn-secondary" %>
+        </div>
       <% end %>
     </div>
   </div>
