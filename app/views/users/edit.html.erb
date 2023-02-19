@@ -1,22 +1,21 @@
+<p id="notice"></p>
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
 
       <% if @user.errors.any? %>
-       <%= @user.errors.count %>件のエラーが発生しました
+       <%= @user.errors.count %>errors prohibited this obj from being saved:
        <ul>
          <% @user.errors.full_messages.each do |message| %>
-          <li><% message %></li>
+          <li><%=  message %></li>
          <% end %>
        </ul>
       <% end %>
 
       <%= form_with model: @user do |f| %>
-        <div class="form-group">
-          <label for="inputName">Name</label>
+      <label for="inputName">Name</label>
           <%= f.text_field :name, class: "form-control user_name", id:"input" %>
-        </div>
         <div class="form-group">
           <label for="inputImage">Image</label>
           <%= f.file_field :profile_image, class: "form-control-file user_image", accept: "image/*" %>
