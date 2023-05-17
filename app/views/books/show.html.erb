@@ -25,19 +25,9 @@
            <% if @book.user == current_user %>
             <%= link_to "Destroy", book_path(@book.id),  data: { confirm: "本当に消しますか？" }, method: :delete, class: "btn btn-sm btn-danger" %>
            <% end %>
-           </td>
-          <td>
-            <% if @book.favorited_by?(current_user) %>
-               <%= link_to book_favorites_path(@book.id), method: :delete do %>
-                 <span style="color:red;">❤︎</span>
-                 <%= @book.favorites.count %>
-               <% end %>
-            <% else %>
-               <%= link_to book_favorites_path(@book.id), method: :post do %>
-                 <span style="color:blue;">❤︎</span>
-                 <%= @book.favorites.count %>
-               <% end %>
-            <% end %>
+          </td>
+          <td class="favorite-btn">
+           <%= render 'favorites/favorite-btn', book: @book %>
           </td>
          </tr>
        </tbody>
