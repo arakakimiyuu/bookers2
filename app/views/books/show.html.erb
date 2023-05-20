@@ -37,7 +37,7 @@
     </table>
       <div>
         <%= form_with model: [@book, @newcomment], local: false do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control book_title" %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", local: false, class: "form-control book_title" %>
           <p><%= f.submit "送信" %></p>
         <% end %>
       </div>
