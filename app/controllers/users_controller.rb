@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
- before_action :authenticate_user!
+ before_action :authenticate_user!, only: [:show]
  before_action :correct_user, only: [:edit]
  before_action :ensure_guest_user, only: [:edit]
 
@@ -27,12 +27,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #在ログインしているユーザーと、「チャットへ」を押されたユーザーの両方を
+    #Entriesテーブルに記録する必要があるので、whereメソッドでそのユーザーを探す
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
+    #現在ログインしているユーザーではないという条件をつけ、roomが作成されている場合とされていない場合に分岐させます
     unless @user.id == currenr_user.id
       @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
+        @userEntry.each do |u| 
+          #それぞれEntriesテーブル内にあるroom_idが共通しているユーザー同士に対して@roomId = cu.room_idという変数を指定する。
           if cu.room_id == user_id then
+            #falseのとき（Roomを作成するとき）の条件を分岐するための記述
             @isRoom = true
             @roomId = cu.room_id
           end
@@ -43,8 +48,8 @@ class UsersController < ApplicationController
         @room = Room.new
         @entry = Entry.new
       end
-    end    
-    
+    end
+
     @books = @user.books
     @newbook = Book.new
   end
