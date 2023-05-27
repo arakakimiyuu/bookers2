@@ -30,26 +30,28 @@
         </tr>
         <% end %>
     　</tbody>
-    　</table>
-    　<%#現在ログインしているユーザーではないという条件式 %>
-    　<% unless @user.id == current_user.id %>
-    　   <%# 相互フォロー状態のときの条件式%>
-        <% if (current_user.following? @user) && (@user.following? current_user) %>
-        <%#コントローラーと同様にすでにチャットルームが作成されている時とされていない時の条件分岐をさせるため、@isRoomを使用 %>
-        <%#@isRoomがtrueの時は、チャットボタンを出現させすでに作成されたチャットへと移行する %>
-        <% if @isRoom == true %>
-          <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
-        <% else %>
-          <%= form_for @room do |f| %>
-            <%= fields_for @entry do |e| %>
-              <%#Entriesテーブルのレコードにはuser_idを送る必要があるので、hidden_field（隠しフィールドの作成）で@user.idをvalueにおく %>
-              <%= e.hidden_field :user_id, value: @user.id %>
+    　<div>
+    　  <%#現在ログインしているユーザーではないという条件式 %>
+          　<% unless @user.id == current_user.id %>
+        　   <%# 相互フォロー状態のときの条件式%>
+            <% if (current_user.following? @user) && (@user.following? current_user) %>
+            <%#コントローラーと同様にすでにチャットルームが作成されている時とされていない時の条件分岐をさせるため、@isRoomを使用 %>
+            <%#@isRoomがtrueの時は、チャットボタンを出現させすでに作成されたチャットへと移行する %>
+            <% if @isRoom == true %>
+              <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%#Entriesテーブルのレコードにはuser_idを送る必要があるので、hidden_field（隠しフィールドの作成）で@user.idをvalueにおく %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+              <% end %>
             <% end %>
-            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+            <% end %>
           <% end %>
-        <% end %>
-        <% end %>
-      <% end %>
+    　</div>
+    　</table>
     </div>
   </div>
 </div>
