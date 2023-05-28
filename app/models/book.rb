@@ -5,6 +5,8 @@ class Book < ApplicationRecord
  #favoritesモデルを介してuserモデルのデータを持ってくる記述
  has_many :favorited_users, through: :favorites, source: :user
  has_many :book_comments, dependent: :destroy
+ #閲覧数の表示
+ has_many :view_counts, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
