@@ -49,9 +49,10 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-
     @books = @user.books
     @newbook = Book.new
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
   end
 
   def edit

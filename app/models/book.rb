@@ -29,4 +29,8 @@ class Book < ApplicationRecord
       @books = Book.all
     end
   end
+  #本の投稿数 scope :スコープの名前, -> { 条件式 }
+  scope :created_today, -> { where(created_at: Time.zone.now.all_day) } # 今日
+  scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) } # 前日
+
 end
