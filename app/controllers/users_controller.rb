@@ -71,6 +71,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    #/users/:user_id/search_form(.:format)と書いてあるため
+    @user = User.find(params[:user_id])
+    #ユーザーが投稿した本のデータを捜す
+    #ユーザーが今まで(to_date.all_day)投稿した(created_at)データ(params?)をcreated_at:に格納
+    @books = @user.books.where(created_at: params[:created_at].to_date.all_day)
+    render :search_form
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
