@@ -22,6 +22,8 @@ class User < ApplicationRecord
   #閲覧数の表示
   has_many :view_counts, dependent: :destroy
 
+  has_many :group_users, dependent: :destroy
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
