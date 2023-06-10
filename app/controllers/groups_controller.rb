@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group = Group.new(group_params)
+    if @group.update(group_params)
       redirect_to groups_path
     else
       render :edit
