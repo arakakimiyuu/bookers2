@@ -24,5 +24,7 @@ Rails.application.routes.draw do
 
   resources :rooms, only:[:create, :show]
   resources :messages, only:[:create]
-  resources :groups, only:[:new, :index, :show, :create, :edit, :update]
+  resources :groups, only:[:new, :index, :show, :create, :edit, :update] do
+    resource :group_users, only:[:create, :destroy]
+  end
 end
