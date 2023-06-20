@@ -39,5 +39,10 @@ class Book < ApplicationRecord
   scope :created_4days, -> { where(created_at: 4.days.ago.all_day) } #4日前
   scope :created_5days, -> { where(created_at: 5.days.ago.all_day) } #5日前
   scope :created_6days, -> { where(created_at: 6.days.ago.all_day) } #6日前
+  
+  #sort機能
+  scope :latest, -> {order(created_at: :desc)} #最新順
+  scope :old, -> {order(created_at: :asc)} #古い順
+  scope :star_count, -> {order(star: :desc)} #評価順
 
 end

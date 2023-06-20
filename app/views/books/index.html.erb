@@ -15,6 +15,9 @@
 
    <div class="col-md-8 offset-md-1">
    <h2>Books</h2>
+    <%= link_to '新しい順', books_path(latest: "true") %>
+    |<%= link_to '古い順', books_path(old: "true") %>
+    |<%= link_to '評価の高い順', books_path(star_count: "true") %>
     <table class="table table-hover table-inverse">
      <thead>
       <tr>
@@ -38,6 +41,24 @@
            <%= render 'favorites/favorite-btn', book: book %>
           </td>
           <td><%= link_to "#{book.book_comments.count} コメント数", book_path(book.id) %></td>
+          <td>
+            <div id="star_<%= book.id %>"></div>
+            <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_<%= book.id %>');
+              if (elem == null) return;
+            
+              elem.innerHTML = "";
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                score: "<%= book.star %>",
+                readOnly: true,
+              };
+              raty(elem, opt);
+            });
+            </script>
+          </td>
         </tr>
         <% end %>
      </tbody>

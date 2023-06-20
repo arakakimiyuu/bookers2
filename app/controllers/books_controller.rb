@@ -33,6 +33,16 @@ class BooksController < ApplicationController
       #reverseをつけることで昇順、降順を入れ替えることができる
       }.reverse
      @book = Book.new
+     #sort機能
+     if params[:latest]
+       @books = Book.latest
+     elsif params[:old]
+       @books = Book.old
+     elsif params[:star_count]
+       @books = Book.star_count
+     else
+       @books = Book.all
+     end
   end
 
   def show
