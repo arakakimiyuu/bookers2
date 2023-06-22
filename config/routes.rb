@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
+  get 'tagsearches/search', to: 'tagsearches#search'
 
   resources :rooms, only:[:create, :show]
   resources :messages, only:[:create]
