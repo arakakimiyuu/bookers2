@@ -18,7 +18,7 @@ class BooksController < ApplicationController
 
   def index
      @book = Book.new
-     @books = Book.all
+     @books = Book.all.page(params[:page]).per(10)
      @user = current_user
      #Time.current はconfig/application.rbに設定してあるタイムゾーンを元に現在日時を取得
      #at_end_of_day は1日の終わりを23:59に設定
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
      elsif params[:star_count]
        @books = Book.star_count
      else
-       @books = Book.all
+       @books = Book.all.page(params[:page]).per(10)
      end
   end
 

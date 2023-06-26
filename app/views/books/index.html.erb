@@ -9,10 +9,7 @@
    <% end %>
 
   <div class="row">
-
-
    <%= render 'list', book: @book, user: @user %>
-
    <div class="col-md-8 offset-md-1">
    <h2>Books</h2>
     <%= link_to '新しい順', books_path(latest: "true") %>
@@ -38,9 +35,9 @@
           <td><%= link_to book.title, book_path(book.id) %></td>
           <td><%= book.body %></td>
           <td>
-          　　<% if @book.category.present? %>
-          　　    <%= link_to @book.category, tagsearches_search_path(content:@book.category)%>
-          　　<% end %>
+           <% if @book.category.present? %>
+            <%= link_to @book.category, tagsearches_search_path(content :@book.category) %>
+         　<% end %>
           </td>
           <td id="favorite-btn_<%= book.id %>">
            <%= render 'favorites/favorite-btn', book: book %>
@@ -69,5 +66,6 @@
      </tbody>
     </table>
     </div>
+    <%= paginate @books %>
    </div>
 </div>
